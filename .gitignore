@@ -10,6 +10,12 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+.sass-cache/
+
+# Jekyll
+docs/_site
+[Gg]emfile.lock
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

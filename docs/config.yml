@@ -1,0 +1,18 @@
+# Setup
+title:        Word
+tagline:      The new chat application, completely open-source :)
+baseurl:      ""
+repository: inspire95/Word
+
+theme: jekyll-theme-cayman
+
+# About/contact
+author:
+  name:       Dawid Urban
+  email:      dawidurban95@gmail.com   
+
+# Gems
+gems:
+
+#Others
+markdown: kramdown
