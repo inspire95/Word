@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Security;
 using System.Runtime.InteropServices;
 
-namespace Word
+namespace Word.Core
 {
     /// <summary>
     /// Helpers for the <see cref="SecureString"/> class

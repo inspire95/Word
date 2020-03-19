@@ -1,4 +1,4 @@
-namespace Word
+namespace Word.Core
 {
     /// <summary>
     /// A page of the application
@@ -14,5 +14,10 @@ namespace Word
         /// The main chat page
         /// </summary>
         Chat = 1,
+        
+        /// <summary>
+        /// The register page
+        /// </summary>
+        Register = 2,
     }
 }

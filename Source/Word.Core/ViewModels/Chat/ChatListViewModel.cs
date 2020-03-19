@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Word
+namespace Word.Core
 {
     /// <summary>
     /// A view model for the overview chat list

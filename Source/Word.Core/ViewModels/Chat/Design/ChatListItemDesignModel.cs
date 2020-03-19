@@ -1,4 +1,4 @@
-namespace Word
+namespace Word.Core
 {
     /// <summary>
     /// The design-time data for a <see cref="ChatListItemViewModel"/>
@@ -21,7 +21,7 @@ namespace Word
         /// </summary>
         public ChatListItemDesignModel()
         {
-            Initials = "LM";
+            Initials = "DU";
             Name = "Dawid";
             Message = "Ten czat jest super!";
             ProfilePictureRGB = "3099c5";
