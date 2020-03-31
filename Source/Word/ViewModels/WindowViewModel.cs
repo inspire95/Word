@@ -60,7 +60,7 @@ namespace Word
         /// <summary>
         /// The size of the resize border around the window
         /// </summary>
-        public int ResizeBorder => Borderless ? 0 : 6;
+        public int ResizeBorder => Borderless ? 0 : 10;
 
         /// <summary>
         /// The size of the resize border around the window, taking into account the outer margin

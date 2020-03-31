@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -51,7 +52,7 @@ namespace Word
         /// <summary>
         /// The transform matrix used to convert WPF sizes to screen pixels
         /// </summary>
-        private Matrix mTransformToDevice;
+        private DpiScale? mMonitorDpi;
 
         /// <summary>
         /// The last screen the window was on
@@ -65,7 +66,7 @@ namespace Word
 
         #endregion
 
-        #region Dll Imports
+        #region DLL Imports
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -109,9 +110,6 @@ namespace Word
         {
             mWindow = window;
 
-            // Create transform visual (for converting WPF size to pixel size)
-            GetTransform();
-
             // Listen out for source initialized to setup
             mWindow.SourceInitialized += Window_SourceInitialized;
 
@@ -122,25 +120,6 @@ namespace Word
         #endregion
 
         #region Initialize
-
-        /// <summary>
-        /// Gets the transform object used to convert WPF sizes to screen pixels
-        /// </summary>
-        private void GetTransform()
-        {
-            // Get the visual source
-            var source = PresentationSource.FromVisual(mWindow);
-
-            // Reset the transform to default
-            mTransformToDevice = default(Matrix);
-
-            // If we cannot get the source, ignore
-            if (source == null)
-                return;
-
-            // Otherwise, get the new transform object
-            mTransformToDevice = source.CompositionTarget.TransformToDevice;
-        }
 
         /// <summary>
         /// Initialize and hook into the windows message pump
@@ -172,8 +151,8 @@ namespace Word
         /// <param name="e"></param>
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // We cannot find positioning until the window transform has been established
-            if (mTransformToDevice == default(Matrix))
+            // Cannot calculate size until we know monitor scale
+            if (mMonitorDpi == null)
                 return;
 
             // Get the WPF size
@@ -186,8 +165,8 @@ namespace Word
             var right = left + mWindow.Width;
 
             // Get window position/size in device pixels
-            var windowTopLeft = mTransformToDevice.Transform(new Point(left, top));
-            var windowBottomRight = mTransformToDevice.Transform(new Point(right, bottom));
+            var windowTopLeft = new Point(left * mMonitorDpi.Value.DpiScaleX, top * mMonitorDpi.Value.DpiScaleX);
+            var windowBottomRight = new Point(right * mMonitorDpi.Value.DpiScaleX, bottom * mMonitorDpi.Value.DpiScaleX);
 
             // Check for edges docked
             var edgedTop = windowTopLeft.Y <= (mScreenSize.Top + mEdgeTolerance);
@@ -218,7 +197,7 @@ namespace Word
 
         #endregion
 
-        #region Windows Proc
+        #region Windows Message Pump
 
         /// <summary>
         /// Listens out for all windows messages for this window
@@ -265,8 +244,8 @@ namespace Word
                 return;
 
             // If this has changed from the last one, update the transform
-            if (lCurrentScreen != mLastScreen || mTransformToDevice == default(Matrix))
-                GetTransform();
+            if (lCurrentScreen != mLastScreen || mMonitorDpi == null)
+                mMonitorDpi = VisualTreeHelper.GetDpi(mWindow);
 
             // Store last know screen
             mLastScreen = lCurrentScreen;
@@ -284,7 +263,7 @@ namespace Word
             CurrentMonitorSize = new Rectangle(lMmi.ptMaxPosition.X, lMmi.ptMaxPosition.Y, lMmi.ptMaxSize.X + lMmi.ptMaxPosition.X, lMmi.ptMaxSize.Y + lMmi.ptMaxPosition.Y);
 
             // Set min size
-            var minSize = mTransformToDevice.Transform(new Point(mWindow.MinWidth, mWindow.MinHeight));
+            var minSize = new Point(mWindow.MinWidth * mMonitorDpi.Value.DpiScaleX, mWindow.MinHeight * mMonitorDpi.Value.DpiScaleX);
             lMmi.ptMinTrackSize.X = (int)minSize.X;
             lMmi.ptMinTrackSize.Y = (int)minSize.Y;
 
@@ -296,7 +275,7 @@ namespace Word
         }
     }
 
-    #region Dll Helper Structures
+    #region DLL Helper Structures
 
     enum MonitorOptions : uint
     {
