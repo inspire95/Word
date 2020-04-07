@@ -26,7 +26,7 @@ namespace Word
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// The secure password for this login page
         /// </summary>
