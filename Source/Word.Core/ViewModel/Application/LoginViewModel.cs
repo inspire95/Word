@@ -63,7 +63,17 @@ namespace Word.Core
         {
             await RunCommandAsync(() => LoginIsRunning, async () =>
             {
+                // TODO: Fake a login...
                 await Task.Delay(1000);
+                
+                // OK successfully logged in... now get users data
+                // TODO: Ask server for users info
+
+                // TODO: Remove this with real information pulled from our database in future
+                IoC.Settings.Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Dawid Urban {DateTime.Now.ToLocalTime()}" };
+                IoC.Settings.Username = new TextEntryViewModel { Label = "Username", OriginalText = "dawid" };
+                IoC.Settings.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
+                IoC.Settings.Email = new TextEntryViewModel { Label = "Email", OriginalText = "dawidurban95@gmail.com" };
 
                 // Go to chat page
                 IoC.Application.GoToPage(ApplicationPage.Chat);

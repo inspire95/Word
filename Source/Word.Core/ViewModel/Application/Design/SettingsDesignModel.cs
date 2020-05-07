@@ -25,7 +25,7 @@ namespace Word.Core
         {
             Name = new TextEntryViewModel { Label = "Name", OriginalText = "Dawid Urban" };
             Username = new TextEntryViewModel { Label = "Username", OriginalText = "dawid" };
-            Password = new TextEntryViewModel { Label = "Password", OriginalText = "********" };
+            Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
             Email = new TextEntryViewModel { Label = "Email", OriginalText = "dawidurban95@gmail.com" };
         }
 
