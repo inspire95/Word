@@ -59,6 +59,9 @@ namespace Word
 
                 // Update the value
                 mViewModel = value;
+                
+                // Fire the view model changed method
+                OnViewModelChanged();
 
                 // Set the data context for this page
                 DataContext = mViewModel;
@@ -150,6 +153,14 @@ namespace Word
         }
 
         #endregion
+          
+        /// <summary>
+        /// Fired when the view model changes
+        /// </summary>
+        protected virtual void OnViewModelChanged()
+        {
+
+        }
     }
 
     /// <summary>
