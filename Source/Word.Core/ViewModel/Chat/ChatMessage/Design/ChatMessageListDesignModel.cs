@@ -25,6 +25,8 @@ namespace Word.Core
         /// </summary>
         public ChatMessageListDesignModel()
         {
+            DisplayTitle = "Dawid";
+            
             Items = new ObservableCollection<ChatMessageListItemViewModel>
             {
                 new ChatMessageListItemViewModel
