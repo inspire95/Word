@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Word.Core
@@ -13,7 +15,7 @@ namespace Word.Core
         /// <summary>
         /// The chat thread items for the list
         /// </summary>
-        public List<ChatMessageListItemViewModel> Items { get; set; }
+        public ObservableCollection<ChatMessageListItemViewModel> Items { get; set; }
         
         /// <summary>
         /// True to show the attachment menu, false to hide it
@@ -30,6 +32,11 @@ namespace Word.Core
         /// </summary>
         public ChatAttachmentPopupMenuViewModel AttachmentMenu { get; set; }
 
+        /// <summary>
+        /// The text for the current message being written
+        /// </summary>
+        public string PendingMessageText { get; set; }
+        
         #endregion
 
         #region Public Commands
@@ -94,12 +101,22 @@ namespace Word.Core
         /// </summary>
         public void Send()
         {
-            IoC.UI.ShowMessage(new MessageBoxDialogViewModel
+            if (Items == null)
+                Items = new ObservableCollection<ChatMessageListItemViewModel>();
+
+            // Fake send a new message
+            Items.Add(new ChatMessageListItemViewModel
             {
-                Title = "Send Message",
-                Message = "Thank you for writing a nice message :)",
-                OkText = "OK"
+                Initials = "DU",
+                Message = PendingMessageText,
+                MessageSentTime = DateTime.UtcNow,
+                SentByMe = true,
+                SenderName = "Dawid Urban",
+                NewItem = true
             });
+            
+            // Clear the pending message text
+            PendingMessageText = string.Empty;
         }
 
         
