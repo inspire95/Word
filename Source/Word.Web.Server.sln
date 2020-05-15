@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Word.Web.Server", "Word.Web.Server/Word.Web.Server.csproj", "{B6C91DFF-E4A2-4DD3-A357-F8BECCCA183A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Word.Web.Server", "Word.Web.Server\Word.Web.Server.csproj", "{B6C91DFF-E4A2-4DD3-A357-F8BECCCA183A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
