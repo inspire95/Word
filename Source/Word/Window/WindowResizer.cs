@@ -88,7 +88,7 @@ namespace Word
         /// A flag indicating if the window is currently being moved/dragged
         /// </summary>
         private bool mBeingMoved = false;
-        
+
         #endregion
 
         #region DLL Imports
@@ -102,7 +102,7 @@ namespace Word
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr MonitorFromPoint(POINT pt, MonitorOptions dwFlags);
-        
+
         [DllImport("user32.dll")]
         static extern IntPtr MonitorFromWindow(IntPtr hwnd, MonitorOptions dwFlags);
 
@@ -114,17 +114,17 @@ namespace Word
         /// Called when the window dock position changes
         /// </summary>
         public event Action<WindowDockPosition> WindowDockChanged = (dock) => { };
-        
+
         /// <summary>
         /// Called when the window starts being moved/dragged
         /// </summary>
         public event Action WindowStartedMove = () => { };
-        
+
         /// <summary>
         /// Called when the window has been moved/dragged and then finished
         /// </summary>
         public event Action WindowFinishedMove = () => { };
-        
+
         #endregion
 
         #region Public Properties
@@ -298,13 +298,13 @@ namespace Word
                     WmGetMinMaxInfo(hwnd, lParam);
                     handled = true;
                     break;
-                    
+
                 // Once the window starts being moved
                 case 0x0231: // WM_ENTERSIZEMOVE
                     mBeingMoved = true;
                     WindowStartedMove();
                     break;
-                    
+
                 // Once the window has finished being moved
                 case 0x0232: // WM_EXITSIZEMOVE
                     mBeingMoved = false;
@@ -331,12 +331,12 @@ namespace Word
             // Now get the current screen
             var lCurrentScreen = mBeingMoved ?
                 // If being dragged get it from the mouse position
-                MonitorFromPoint(lMousePosition, MonitorOptions.MONITOR_DEFAULTTONULL) : 
+                MonitorFromPoint(lMousePosition, MonitorOptions.MONITOR_DEFAULTTONULL) :
                 // Otherwise get it from the window position (for example being moved via Win + Arrow)
                 // in case the mouse is on another monitor
                 MonitorFromWindow(hwnd, MonitorOptions.MONITOR_DEFAULTTONULL);
-            
-            var lPrimaryScreen = MonitorFromPoint(new POINT(0,0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
+
+            var lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
 
             // Try and get the current screen information
             var lCurrentScreenInfo = new MONITORINFO();
@@ -351,7 +351,7 @@ namespace Word
             // NOTE: Always update it
             // If this has changed from the last one, update the transform
             //if (lCurrentScreen != mLastScreen || mMonitorDpi == null)
-                mMonitorDpi = VisualTreeHelper.GetDpi(mWindow);
+            mMonitorDpi = VisualTreeHelper.GetDpi(mWindow);
 
             // Store last know screen
             mLastScreen = lCurrentScreen;
@@ -396,7 +396,7 @@ namespace Word
                 // NOTE: rcMonitor is the monitor size
                 //       rcWork is the available screen size (so the area inside the task bar start menu for example)
 
-                // Size size limits (used by Windows when maximized)
+                // Size limits (used by Windows when maximized)
                 // relative to 0,0 being the current screens top-left corner
 
                 // Set to primary monitor size
@@ -445,7 +445,7 @@ namespace Word
 
     #region DLL Helper Structures
 
-    enum MonitorOptions : uint
+    public enum MonitorOptions : uint
     {
         MONITOR_DEFAULTTONULL = 0x00000000,
         MONITOR_DEFAULTTOPRIMARY = 0x00000001,
