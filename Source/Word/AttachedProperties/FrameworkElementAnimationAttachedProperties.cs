@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,7 +23,7 @@ namespace Word
         /// Used to make sure we run the logic at least once during first load
         /// </summary>
         protected Dictionary<WeakReference, bool> mAlreadyLoaded = new Dictionary<WeakReference, bool>();
-        
+
         /// <summary>
         /// The most recent value used if we get a value changed before we do the first load
         /// </summary>
@@ -37,7 +36,7 @@ namespace Word
             // Get the framework element
             if (!(sender is FrameworkElement element))
                 return;
-            
+
             // Try and get the already loaded reference
             var alreadyLoadedReference = mAlreadyLoaded.FirstOrDefault(f => f.Key.Target == sender);
 
@@ -53,10 +52,10 @@ namespace Word
             {
                 // Create weak reference
                 var weakReference = new WeakReference(sender);
-                
+
                 // Flag that we are in first load but have not finished it
                 mAlreadyLoaded[weakReference] = false;
-                
+
                 // Start off hidden before we decide how to animate
                 element.Visibility = Visibility.Hidden;
 
@@ -97,7 +96,7 @@ namespace Word
         /// <param name="value">The new value</param>
         protected virtual void DoAnimation(FrameworkElement element, bool value, bool firstLoad) { }
     }
-    
+
     /// <summary>
     /// Fades in an image once the source changes
     /// </summary>
@@ -125,7 +124,7 @@ namespace Word
             await (sender as Image).FadeInAsync(false);
         }
     }
-    
+
     /// <summary>
     /// Animates a framework element sliding it in from the left on show
     /// and sliding out to the left on hide
@@ -142,7 +141,7 @@ namespace Word
                 await element.SlideAndFadeOutAsync(AnimationSlideInDirection.Left, firstLoad ? 0 : 0.3f, keepMargin: false);
         }
     }
-    
+
     /// <summary>
     /// Animates a framework element sliding it in from the right on show
     /// and sliding out to the right on hide
@@ -193,7 +192,7 @@ namespace Word
                 await element.SlideAndFadeOutAsync(AnimationSlideInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: false);
         }
     }
-    
+
     /// <summary>
     /// Animates a framework element sliding up from the bottom on load
     /// if the value is true
@@ -241,7 +240,7 @@ namespace Word
                 await element.FadeOutAsync(firstLoad ? 0 : 0.3f);
         }
     }
-
+    
     /// <summary>
     /// Animates a framework element sliding it from right to left and repeating forever
     /// </summary>
