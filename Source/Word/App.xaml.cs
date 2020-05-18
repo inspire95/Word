@@ -1,4 +1,5 @@
-﻿using Word.Core;
+﻿using Dna;
+using Word.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -41,6 +42,9 @@ namespace Word
         /// </summary>
         private void ApplicationSetup()
         {
+            // Setup the Dna Framework
+            Framework.Startup();
+        
             // Setup IoC
             IoC.Setup();
             
@@ -49,7 +53,7 @@ namespace Word
             {
                 // TODO: Add ApplicationSettings so we can set/edit a log location
                 //       For now just log to the path where this application is running
-                new FileLogger("log.txt"),
+                new Core.FileLogger("Oldlog.txt"),
             }));
 
             // Add our task manager
