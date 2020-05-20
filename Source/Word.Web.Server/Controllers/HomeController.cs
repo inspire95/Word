@@ -153,5 +153,11 @@ namespace Word.Web.Server
 
             return Content("Failed to login", "text/html");
         }
+
+        [Route("test")]
+        public SettingsDataModel Test([FromBody]SettingsDataModel model)
+        {
+            return new SettingsDataModel { Id = "some id", Name = "Dawid", Value = "10" };
+        }
     }
 }
