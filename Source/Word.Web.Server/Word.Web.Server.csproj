@@ -22,4 +22,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Word.Core\Word.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -14,21 +14,21 @@ namespace Word.Core
         /// <summary>
         /// The current page of the application
         /// </summary>
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Chat;
-        
+        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
+
         /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
         /// NOTE: This is not a live up-to-date view model of the current page
         ///       it is simply used to set the view model of the current page 
         ///       at the time it changes
-        
+
         /// </summary>
         public BaseViewModel CurrentPageViewModel { get; set; }
         /// <summary>
         /// True if the side menu should be shown
         /// </summary>
-        public bool SideMenuVisible { get; set; } = true;
-        
+        public bool SideMenuVisible { get; set; } = false;
+
         /// <summary>
         /// True if the settings menu should be shown
         /// </summary>
