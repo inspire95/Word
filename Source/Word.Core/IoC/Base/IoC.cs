@@ -24,7 +24,7 @@ namespace Word.Core
         /// A shortcut to access the <see cref="ILogFactory"/>
         /// </summary>
         public static ILogFactory Logger => IoC.Get<ILogFactory>();
-        
+
         /// <summary>
         /// A shortcut to access the <see cref="IFileManager"/>
         /// </summary>
@@ -34,7 +34,7 @@ namespace Word.Core
         /// A shortcut to access the <see cref="ITaskManager"/>
         /// </summary>
         public static ITaskManager Task => IoC.Get<ITaskManager>();
-        
+
         /// <summary>
         /// A shortcut to access the <see cref="ApplicationViewModel"/>
         /// </summary>

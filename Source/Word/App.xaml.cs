@@ -31,12 +31,11 @@ namespace Word
             // Log it
             IoC.Logger.Log("Application starting...", LogLevel.Debug);
 
-
             // Show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
         }
-        
+
         /// <summary>
         /// Configures our application ready for use
         /// </summary>
@@ -46,12 +45,12 @@ namespace Word
             new DefaultFrameworkConstruction()
                 .UseFileLogger()
                 .Build();
-        
+
             // Setup IoC
             IoC.Setup();
-            
-             // Bind a logger
-            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new[] 
+
+            // Bind a logger
+            IoC.Kernel.Bind<ILogFactory>().ToConstant(new BaseLogFactory(new[]
             {
                 // TODO: Add ApplicationSettings so we can set/edit a log location
                 //       For now just log to the path where this application is running

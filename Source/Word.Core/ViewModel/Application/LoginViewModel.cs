@@ -33,12 +33,12 @@ namespace Word.Core
         /// The command to login
         /// </summary>
         public ICommand LoginCommand { get; set; }
-        
+
         /// <summary>
         /// The command to register for a new account
         /// </summary>
         public ICommand RegisterCommand { get; set; }
-        
+
         #endregion
 
         #region Constructor
@@ -113,20 +113,19 @@ namespace Word.Core
                 IoC.Settings.Username = new TextEntryViewModel { Label = "Username", OriginalText = userData.Username };
                 IoC.Settings.Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
                 IoC.Settings.Email = new TextEntryViewModel { Label = "Email", OriginalText = userData.Email };
-                
+
                 // Go to chat page
                 IoC.Application.GoToPage(ApplicationPage.Chat);
             });
         }
-        
+
         /// <summary>
         /// Takes the user to the register page
         /// </summary>
         /// <returns></returns>
         public async Task RegisterAsync()
         {
-           
-             // Go to register page?
+            // Go to register page?
             IoC.Application.GoToPage(ApplicationPage.Register);
 
             await Task.Delay(1);

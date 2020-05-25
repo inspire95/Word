@@ -10,13 +10,11 @@ using System.Text;
 
 namespace Word.Web.Server
 {
-
     /// <summary>
     /// The startup class that handles constructing the ASP.Net server services
     /// </summary>
     public class Startup
     {
-
         /// <summary>
         /// Main entry point for start of web server
         /// </summary>
@@ -76,7 +74,6 @@ namespace Word.Web.Server
                             Encoding.UTF8.GetBytes(IoCContainer.Configuration["Jwt:SecretKey"])),
                     };
                 });
-
 
             // Change password policy
             services.Configure<IdentityOptions>(options =>

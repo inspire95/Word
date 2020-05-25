@@ -67,6 +67,5 @@ namespace Word.Core
             // Resolve the path to absolute
             return Path.GetFullPath(path);
         }
-
     }
 }

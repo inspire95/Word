@@ -38,7 +38,7 @@ namespace Word.Core
         /// The text for the logout button
         /// </summary>
         public string LogoutButtonText { get; set; }
-        
+
         #endregion
 
         #region Public Commands
@@ -62,7 +62,7 @@ namespace Word.Core
         /// The command to clear the users data from the view model
         /// </summary>
         public ICommand ClearUserDataCommand { get; set; }
-        
+
         #endregion
 
         #region Constructor
@@ -77,12 +77,15 @@ namespace Word.Core
             CloseCommand = new RelayCommand(Close);
             LogoutCommand = new RelayCommand(Logout);
             ClearUserDataCommand = new RelayCommand(ClearUserData);
-            
-            /// TODO: Remove this once th real back-end is ready
-            Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Dawid Urban" };
-            Username = new TextEntryViewModel { Label = "Username", OriginalText = "dawid" };
+
+            // TODO: Remove this once th real back-end is ready
+            Name = new TextEntryViewModel { Label = "Name", OriginalText = $"Luke Malpass" };
+            Username = new TextEntryViewModel { Label = "Username", OriginalText = "luke" };
             Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "********" };
-            Email = new TextEntryViewModel { Label = "Email", OriginalText = "dawidurban95@gmail.com" };
+            Email = new TextEntryViewModel { Label = "Email", OriginalText = "contact@angelsix.com" };
+
+            // TODO: Get from localization
+            LogoutButtonText = "Logout";
         }
 
         #endregion
@@ -104,7 +107,7 @@ namespace Word.Core
             // Close settings menu
             IoC.Application.SettingsMenuVisible = false;
         }
-        
+
         /// <summary>
         /// Logs the user out
         /// </summary>

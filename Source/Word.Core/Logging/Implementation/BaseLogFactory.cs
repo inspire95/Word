@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 namespace Word.Core
 {
     /// <summary>
-    /// The standard log factory for Word
+    /// The standard log factory for Fasetto Word
     /// Logs details to the Debug by default
     /// </summary>
     public class BaseLogFactory : ILogFactory
@@ -59,7 +59,7 @@ namespace Word.Core
         {
             // Add console logger
             AddLogger(new DebugLogger());
-            
+
             // Add any others passed in
             if (loggers != null)
                 foreach (var logger in loggers)
@@ -112,7 +112,7 @@ namespace Word.Core
         /// <param name="lineNumber">The line of code in the filename this message was logged from</param>
         public void Log(
             string message,
-            LogLevel level = LogLevel.Informative, 
+            LogLevel level = LogLevel.Informative,
             [CallerMemberName] string origin = "",
             [CallerFilePath] string filePath = "",
             [CallerLineNumber] int lineNumber = 0)

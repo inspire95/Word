@@ -145,7 +145,7 @@ namespace Word.Web.Server
             await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
 
             // Sign user in with the valid credentials
-            var result = await mSignInManager.PasswordSignInAsync("dawid", "password", true, false);
+            var result = await mSignInManager.PasswordSignInAsync("inspire95", "password", true, false);
 
             // If successful...
             if (result.Succeeded)
