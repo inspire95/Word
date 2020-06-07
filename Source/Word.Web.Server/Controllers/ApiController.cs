@@ -110,7 +110,7 @@ namespace Word.Web.Server
                 var confirmationUrl = $"http://{Request.Host.Value}/api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
 
                 // Email the user the verification code
-                await EmailSender.SendUserVerificationEmailAsync(null, userIdentity.Email, confirmationUrl);
+                await EmailSender.SendUserVerificationEmailAsync(user.UserName, userIdentity.Email, confirmationUrl);
 
                 // Return valid response containing all users details
                 return new ApiResponse<RegisterResultApiModel>
