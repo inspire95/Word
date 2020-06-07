@@ -1,5 +1,6 @@
 using Word.Core;
 using System.Threading.Tasks;
+using static Dna.FrameworkDI;
 
 namespace Word.Web.Server
 {
@@ -17,11 +18,11 @@ namespace Word.Web.Server
         /// <returns></returns>
         public static async Task<SendEmailResponse> SendUserVerificationEmailAsync(string displayName, string email, string verificationUrl)
         {
-            return await IoC.EmailTemplateSender.SendGeneralEmailAsync(new SendEmailDetails
+            return await DI.EmailTemplateSender.SendGeneralEmailAsync(new SendEmailDetails
             {
                 IsHTML = true,
-                FromEmail = IoCContainer.Configuration["Settings:SendEmailFromEmail"],
-                FromName = IoCContainer.Configuration["Settings:SendEmailFromName"],
+                FromEmail = Configuration["Settings:SendEmailFromEmail"],
+                FromName = Configuration["Settings:SendEmailFromName"],
                 ToEmail = email,
                 ToName = displayName,
                 Subject = "Verify Your Email -  Word"

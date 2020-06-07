@@ -1,3 +1,5 @@
+using Dna;
+using Dna.AspNet;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
@@ -13,6 +15,14 @@ namespace Word.Web.Server
         public static IWebHost BuildWebHost(string[] args)
         {
             return WebHost.CreateDefaultBuilder()
+                // Add Dna Framework
+                .UseDnaFramework(construct =>
+                {
+                    // Configure framework
+
+                    // Add file logger
+                    construct.AddFileLogger();
+                })
                 .UseStartup<Startup>()
                 .Build();
         }
