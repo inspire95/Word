@@ -8,9 +8,12 @@
   <IgnoredWords>
     <Ignore>inspire95</Ignore>
     <Ignore>api</Ignore>
-    <Ignore>Urban</Ignore>
-    <Ignore>username</Ignore>
+    <Ignore>deserialize</Ignore>
     <Ignore>html</Ignore>
+    <Ignore>Urban</Ignore>
+    <Ignore>templated</Ignore>
+    <Ignore>username</Ignore>
+    <Ignore>Inspire95</Ignore>
   </IgnoredWords>
   <InheritExclusionExpressions>True</InheritExclusionExpressions>
   <InheritIgnoredFilePatterns>True</InheritIgnoredFilePatterns>

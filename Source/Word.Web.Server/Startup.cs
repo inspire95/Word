@@ -1,3 +1,4 @@
+using Word.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,12 @@ namespace Word.Web.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add SendGrid email sender
+            services.AddSendGridEmailSender();
+
+            // Add general email template sender
+            services.AddEmailTemplateSender();
+            
             // Add ApplicationDbContext to DI
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(IoCContainer.Configuration.GetConnectionString("DefaultConnection")));
