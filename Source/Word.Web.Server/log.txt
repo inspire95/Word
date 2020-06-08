@@ -51,3 +51,21 @@ WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
 [2020-06-07 05:33:47] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 [2020-06-07 05:33:47] Executed action Word.Web.Server.ApiController.RegisterAsync (Word.Web.Server) in 1490.2332ms
 [2020-06-07 05:33:47] Request finished in 1664.3291ms 200 application/json; charset=utf-8
+[2020-06-08 11:42:38] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2020-06-08 11:42:40] Request starting HTTP/1.1 GET http://localhost:5000/  
+[2020-06-08 11:42:42] Executing action method Word.Web.Server.HomeController.Index (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-08 11:42:43] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-08 11:42:43] Executed DbCommand (425ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2020-06-08 11:42:44] Executed DbCommand (91ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2020-06-08 11:42:49] Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+[2020-06-08 11:42:52] Executed action Word.Web.Server.HomeController.Index (Word.Web.Server) in 9553.8886ms
+[2020-06-08 11:42:52] Request finished in 11322.291ms 200 text/html; charset=utf-8
+[2020-06-08 11:42:52] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+[2020-06-08 11:42:52] Request finished in 55.3923ms 404 

@@ -1,8 +1,8 @@
-using Word.Core;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using static Word.Core.CoreDI;
 
 namespace Word
 {
@@ -202,7 +202,7 @@ namespace Word
             element.Unloaded += (s, e) => unloaded = true;
 
             // Run a loop off the caller thread
-            IoC.Task.Run(async () =>
+            TaskManager.Run(async () =>
             {
                 // While the element is still available, recheck the size
                 // after every loop in case the container was resized

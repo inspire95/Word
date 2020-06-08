@@ -1,3 +1,5 @@
+using System.Windows.Controls;
+using static Word.DI;
 using Word.Core;
 using System.Windows.Controls;
 
@@ -13,7 +15,7 @@ namespace Word
             InitializeComponent();
 
             // Set data context to settings view model
-            DataContext = IoC.Settings;
+            DataContext = ViewModelSettings;
         }
     }
 }
