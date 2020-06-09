@@ -69,3 +69,40 @@ END
 [2020-06-08 11:42:52] Request finished in 11322.291ms 200 text/html; charset=utf-8
 [2020-06-08 11:42:52] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
 [2020-06-08 11:42:52] Request finished in 55.3923ms 404 
+[2020-06-09 09:26:08] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2020-06-09 09:26:11] Request starting HTTP/1.1 GET http://localhost:5000/  
+[2020-06-09 09:26:14] Executing action method Word.Web.Server.HomeController.Index (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-09 09:26:16] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-09 09:26:17] Executed DbCommand (899ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2020-06-09 09:26:18] Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2020-06-09 09:26:23] Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+[2020-06-09 09:26:25] Executed action Word.Web.Server.HomeController.Index (Word.Web.Server) in 12897.5381ms
+[2020-06-09 09:26:26] Request finished in 14818.1347ms 200 text/html; charset=utf-8
+[2020-06-09 09:28:23] Request starting HTTP/1.1 POST http://localhost:5000/api/login application/json 49
+[2020-06-09 09:28:23] Executing action method Word.Web.Server.ApiController.LogInAsync (Word.Web.Server) with arguments (Word.Core.LoginCredentialsApiModel) - ModelState is Valid
+[2020-06-09 09:28:24] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-09 09:28:24] Executed DbCommand (174ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+[2020-06-09 09:28:24] Invalid password for user dbcfe922-31d0-41d5-9429-89ccf23bdf43.
+[2020-06-09 09:28:24] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-09 09:28:25] Executed action Word.Web.Server.ApiController.LogInAsync (Word.Web.Server) in 1603.9203ms
+[2020-06-09 09:28:25] Request finished in 1722.3711ms 200 application/json; charset=utf-8
+[2020-06-09 09:28:28] Request starting HTTP/1.1 POST http://localhost:5000/api/login application/json 46
+[2020-06-09 09:28:28] Executing action method Word.Web.Server.ApiController.LogInAsync (Word.Web.Server) with arguments (Word.Core.LoginCredentialsApiModel) - ModelState is Valid
+[2020-06-09 09:28:28] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-09 09:28:28] Executed DbCommand (170ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+[2020-06-09 09:28:28] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-09 09:28:29] Executed action Word.Web.Server.ApiController.LogInAsync (Word.Web.Server) in 406.3004ms
+[2020-06-09 09:28:29] Request finished in 432.2712ms 200 application/json; charset=utf-8
