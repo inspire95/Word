@@ -1,4 +1,6 @@
+using Dna;
 using Word.Core;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using static Word.DI;
@@ -10,6 +12,15 @@ namespace Word
     /// </summary>
     public class SettingsViewModel : BaseViewModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// The text to show while loading text
+        /// </summary>
+        private string mLoadingText = "...";
+
+        #endregion
+        
         #region Public Properties
 
         /// <summary>
@@ -90,10 +101,42 @@ namespace Word
         /// </summary>
         public SettingsViewModel()
         {
+            // Create Name
+            Name = new TextEntryViewModel
+            {
+                Label = "Name",
+                OriginalText = mLoadingText,
+                CommitAction = SaveNameAsync
+            };
+
+            // Create Username
+            Username = new TextEntryViewModel
+            {
+                Label = "Username",
+                OriginalText = mLoadingText,
+                CommitAction = SaveUsernameAsync
+            };
+
+            // Create Password
+            Password = new PasswordEntryViewModel
+            {
+                Label = "Password",
+                FakePassword = "********",
+                CommitAction = SavePasswordAsync
+            };
+
+            // Create Email
+            Email = new TextEntryViewModel
+            {
+                Label = "Email",
+                OriginalText = mLoadingText,
+                CommitAction = SaveEmailAsync
+            };
+       
             // Create commands
             OpenCommand = new RelayCommand(Open);
             CloseCommand = new RelayCommand(Close);
-            LogoutCommand = new RelayCommand(Logout);
+            LogoutCommand = new RelayCommand(async () => await LogoutAsync());
             ClearUserDataCommand = new RelayCommand(ClearUserData);
             LoadCommand = new RelayCommand(async () => await LoadAsync());
             SaveNameCommand = new RelayCommand(async () => await SaveNameAsync());
@@ -105,6 +148,8 @@ namespace Word
         }
 
         #endregion
+
+        #region Command Methods
 
         /// <summary>
         /// Open the settings menu
@@ -127,11 +172,12 @@ namespace Word
         /// <summary>
         /// Logs the user out
         /// </summary>
-        public void Logout()
+        public async Task LogoutAsync()
         {
             // TODO: Confirm the user wants to logout
 
-            // TODO: Clear any user data/cache
+            // Clear any user data/cache
+            await ClientDataStore.ClearAllLoginCredentialsAsync();
 
             // Clean all application level view models that contain
             // any information about the current user
@@ -147,10 +193,9 @@ namespace Word
         public void ClearUserData()
         {
             // Clear all view models containing the users info
-            Name = null;
-            Username = null;
-            Password = null;
-            Email = null;
+            Name.OriginalText = mLoadingText;
+            Username.OriginalText = mLoadingText;
+            Email.OriginalText = mLoadingText;
         }
 
         /// <summary>
@@ -158,36 +203,39 @@ namespace Word
         /// </summary>
         public async Task LoadAsync()
         {
-            // Get the stored credentials
-            var storedCredentials = await ClientDataStore.GetLoginCredentialsAsync();
+            // Update values from local cache
+            await UpdateValuesFromLocalStoreAsync();
 
-            Name = new TextEntryViewModel
-            {
-                Label = "Name",
-                OriginalText = $"{storedCredentials?.FirstName} {storedCredentials?.LastName}",
-                CommitAction = SaveNameAsync
-            };
+            // Get the user token
+            var token = (await ClientDataStore.GetLoginCredentialsAsync()).Token;
 
-            Username = new TextEntryViewModel
-            {
-                Label = "Username",
-                OriginalText = storedCredentials?.Username,
-                CommitAction = SaveUsernameAsync
-            };
+            // If we don't have a token (so we are not logged in...)
+            if (string.IsNullOrEmpty(token))
+                // Then do nothing more
+                return;
 
-            Password = new PasswordEntryViewModel
+            // Load user profile details form server
+            var result = await WebRequests.PostAsync<ApiResponse<UserProfileDetailsApiModel>>(
+                "http://localhost:5000/api/user/profile",
+                bearerToken: token);
+                
+            // If it was successful...
+            if (result.Successful)
             {
-                Label = "Password",
-                FakePassword = "********",
-                CommitAction = SavePasswordAsync
-            };
+                // TODO: Should we check if the values are different before saving?
 
-            Email = new TextEntryViewModel
-            {
-                Label = "Email",
-                OriginalText = storedCredentials?.Email,
-                CommitAction = SaveEmailAsync
-            };
+                // Create data model from the response
+                var dataModel = result.ServerResponse.Response.ToLoginCredentialsDataModel();
+
+                // Re-add our known token
+                dataModel.Token = token;
+
+                // Save the new information in the data store
+                await ClientDataStore.SaveLoginCredentialsAsync(dataModel);
+
+                // Update values from local cache
+                await UpdateValuesFromLocalStoreAsync();
+            }
         }
 
         /// <summary>
@@ -242,5 +290,31 @@ namespace Word
             // Return fail
             return false;
         }
+        
+        #endregion
+
+        #region Private Helper Methods
+
+        /// <summary>
+        /// Loads the settings from the local data store and binds them 
+        /// to this view model
+        /// </summary>
+        /// <returns></returns>
+        private async Task UpdateValuesFromLocalStoreAsync()
+        {
+            // Get the stored credentials
+            var storedCredentials = await ClientDataStore.GetLoginCredentialsAsync();
+
+            // Set name
+            Name.OriginalText = $"{storedCredentials?.FirstName} {storedCredentials?.LastName}";
+
+            // Set username
+            Username.OriginalText = storedCredentials?.Username;
+
+            // Set email
+            Email.OriginalText = storedCredentials?.Email;
+        }
+
+        #endregion
     }
 }

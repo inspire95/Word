@@ -30,6 +30,16 @@ namespace Word.Core
                 throw;
             }
         }
+        
+        public async void RunAndForget(Func<Task> function, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(function, origin, filePath, lineNumber);
+            }
+            catch { }
+        }
+
 
         public async Task<TResult> Run<TResult>(Func<Task<TResult>> function, CancellationToken cancellationToken, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
@@ -114,6 +124,14 @@ namespace Word.Core
                 // Throw it as normal
                 throw;
             }
+        }   
+        public async void RunAndForget(Func<Task> function, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(function, origin, filePath, lineNumber);
+            }
+            catch { }
         }
 
         public async Task Run(Action action, CancellationToken cancellationToken, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
@@ -132,6 +150,14 @@ namespace Word.Core
                 throw;
             }
         }
+        public async void RunAndForget(Action action, CancellationToken cancellationToken, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(action, origin, filePath, lineNumber);
+            }
+            catch { }
+        }
 
         public async Task Run(Action action, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
@@ -148,6 +174,15 @@ namespace Word.Core
                 // Throw it as normal
                 throw;
             }
+        }
+        
+        public async void RunAndForget(Action action, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            try
+            {
+                await Run(action, origin, filePath, lineNumber);
+            }
+            catch { }
         }
 
         #endregion

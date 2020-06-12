@@ -1,6 +1,7 @@
 using Word.Core;
 using System.Threading.Tasks;
 using static Word.DI;
+using static Word.Core.CoreDI;
 
 namespace Word
 {
@@ -9,6 +10,16 @@ namespace Word
     /// </summary>
     public class ApplicationViewModel : BaseViewModel
     {
+        #region Private Members
+
+        /// <summary>
+        /// True if the settings menu should be shown
+        /// </summary>
+        private bool mSettingsMenuVisible;
+
+        #endregion
+
+        #region Public Properties
         /// <summary>
         /// The current page of the application
         /// </summary>
@@ -30,7 +41,27 @@ namespace Word
         /// <summary>
         /// True if the settings menu should be shown
         /// </summary>
-        public bool SettingsMenuVisible { get; set; }
+        public bool SettingsMenuVisible
+        {
+            get => mSettingsMenuVisible;
+            set
+            {
+                // If property has not changed...
+                if (mSettingsMenuVisible == value)
+                    // Ignore
+                    return;
+
+                // Set the backing field
+                mSettingsMenuVisible = value;
+
+                // If the settings menu is now visible...
+                if (value)
+                    // Reload settings
+                    TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Navigates to the specified page
@@ -68,14 +99,7 @@ namespace Word
         public async Task HandleSuccessfulLoginAsync(UserProfileDetailsApiModel loginResult)
         {
             // Store this in the client data store
-            await ClientDataStore.SaveLoginCredentialsAsync(new LoginCredentialsDataModel
-            {
-                Email = loginResult.Email,
-                FirstName = loginResult.FirstName,
-                LastName = loginResult.LastName,
-                Username = loginResult.Username,
-                Token = loginResult.Token
-            });
+            await ClientDataStore.SaveLoginCredentialsAsync(loginResult.ToLoginCredentialsDataModel());
 
             // Load new settings
             await ViewModelSettings.LoadAsync();

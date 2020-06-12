@@ -4,6 +4,7 @@ using Word.Relational;
 using System.Threading.Tasks;
 using System.Windows;
 using static Dna.FrameworkDI;
+using static Word.Core.CoreDI;
 using static Word.DI;
 
 namespace Word
@@ -59,7 +60,7 @@ namespace Word
             await ClientDataStore.EnsureDataStoreAsync();
 
             // Load new settings
-            await ViewModelSettings.LoadAsync();
+            TaskManager.RunAndForget(ViewModelSettings.LoadAsync);
         }
     }
 }
