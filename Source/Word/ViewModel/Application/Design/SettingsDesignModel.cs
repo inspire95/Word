@@ -23,7 +23,8 @@ namespace Word
         /// </summary>
         public SettingsDesignModel()
         {
-            Name = new TextEntryViewModel { Label = "Name", OriginalText = "Dawid Urban" };
+            FirstName = new TextEntryViewModel { Label = "Fist Name", OriginalText = "Dawid" };
+            LastName = new TextEntryViewModel { Label = "Last Name", OriginalText = "Urban" };
             Username = new TextEntryViewModel { Label = "Username", OriginalText = "inspire95" };
             Password = new PasswordEntryViewModel { Label = "Password", FakePassword = "password" };
             Email = new TextEntryViewModel { Label = "Email", OriginalText = "dawidurban95@gmail.com" };
