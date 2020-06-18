@@ -315,3 +315,34 @@ WHERE [e].[Id] = @__get_Item_0
 [2020-06-14 04:23:52] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 [2020-06-14 04:23:53] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 478.5747ms
 [2020-06-14 04:23:53] Request finished in 594.4649ms 200 application/json; charset=utf-8
+[2020-06-18 11:31:48] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2020-06-18 11:31:52] Request starting HTTP/1.1 GET http://localhost:5000/  
+[2020-06-18 11:31:53] Executing action method Word.Web.Server.HomeController.Index (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-18 11:31:53] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-18 11:31:54] Executed DbCommand (100ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2020-06-18 11:31:54] Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2020-06-18 11:31:59] Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+[2020-06-18 11:32:00] Executed action Word.Web.Server.HomeController.Index (Word.Web.Server) in 7574.3613ms
+[2020-06-18 11:32:00] Request finished in 8937.4959ms 200 text/html; charset=utf-8
+[2020-06-18 11:32:01] Request starting HTTP/1.1 GET http://localhost:5000/favicon.ico  
+[2020-06-18 11:32:01] Request finished in 41.4621ms 404 
+[2020-06-18 11:32:08] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-18 11:32:09] Successfully validated the token.
+[2020-06-18 11:32:09] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-18 11:32:09] Authorization was successful for user: daw95.
+[2020-06-18 11:32:09] Executing action method Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-18 11:32:09] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-18 11:32:09] Executed DbCommand (170ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-18 11:32:09] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-18 11:32:10] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 1276.7236ms
+[2020-06-18 11:32:10] Request finished in 1396.7876ms 200 application/json; charset=utf-8
