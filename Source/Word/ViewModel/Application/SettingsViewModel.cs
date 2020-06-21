@@ -267,28 +267,29 @@ namespace Word
 
             // Load user profile details form server
             var result = await WebRequests.PostAsync<ApiResponse<UserProfileDetailsApiModel>>(
-               // Set URL
+                // Set URL
                 RouteHelpers.GetAbsoluteRoute(ApiRoutes.GetUserProfile),
                 // Pass in user Token
                 bearerToken: token);
 
-            // If it was successful...
-            if (result.Successful)
-            {
-                // TODO: Should we check if the values are different before saving?
+            // If the response has an error...
+            if (await result.DisplayErrorIfFailedAsync("Load User Details Failed"))
+                // We are done
+                return;
 
-                // Create data model from the response
-                var dataModel = result.ServerResponse.Response.ToLoginCredentialsDataModel();
+            // TODO: Should we check if the values are different before saving?
 
-                // Re-add our known token
-                dataModel.Token = token;
+            // Create data model from the response
+            var dataModel = result.ServerResponse.Response.ToLoginCredentialsDataModel();
 
-                // Save the new information in the data store
-                await ClientDataStore.SaveLoginCredentialsAsync(dataModel);
+            // Re-add our known token
+            dataModel.Token = token;
 
-                // Update values from local cache
-                await UpdateValuesFromLocalStoreAsync();
-            }
+            // Save the new information in the data store
+            await ClientDataStore.SaveLoginCredentialsAsync(dataModel);
+
+            // Update values from local cache
+            await UpdateValuesFromLocalStoreAsync();
         }
 
         /// <summary>
@@ -519,7 +520,7 @@ namespace Word
 
             // Update the server with the details
             var result = await WebRequests.PostAsync<ApiResponse>(
-                 // Set URL
+                // Set URL
                 RouteHelpers.GetAbsoluteRoute(ApiRoutes.UpdateUserProfile),
                 // Pass the Api model
                 updateApiModel,

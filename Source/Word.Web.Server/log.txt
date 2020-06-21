@@ -499,3 +499,110 @@ WHERE [e].[Id] = @__get_Item_0
 [2020-06-20 11:51:33] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 [2020-06-20 11:51:33] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 246.5393ms
 [2020-06-20 11:51:33] Request finished in 278.0612ms 200 application/json; charset=utf-8
+[2020-06-21 01:17:09] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2020-06-21 01:17:12] Request starting HTTP/1.1 GET http://localhost:5000/  
+[2020-06-21 01:17:14] Executing action method Word.Web.Server.HomeController.Index (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-21 01:17:14] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 01:17:15] Executed DbCommand (305ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2020-06-21 01:17:15] Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2020-06-21 01:17:20] Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+[2020-06-21 01:17:22] Executed action Word.Web.Server.HomeController.Index (Word.Web.Server) in 8600.4495ms
+[2020-06-21 01:17:22] Request finished in 10261.2093ms 200 text/html; charset=utf-8
+[2020-06-21 01:59:47] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-21 01:59:48] Successfully validated the token.
+[2020-06-21 01:59:48] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-21 01:59:48] Authorization was successful for user: daw95.
+[2020-06-21 01:59:48] Executing action method Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-21 01:59:48] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 01:59:49] Executed DbCommand (245ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-21 01:59:49] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-21 01:59:49] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 2456.0034ms
+[2020-06-21 01:59:50] Request finished in 2842.9038ms 200 application/json; charset=utf-8
+[2020-06-21 02:00:07] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-21 02:00:07] Successfully validated the token.
+[2020-06-21 02:00:08] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-21 02:00:08] Authorization was successful for user: daw95.
+[2020-06-21 02:00:08] Executing action method Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-21 02:00:08] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 02:00:08] Executed DbCommand (32ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-21 02:00:08] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-21 02:00:08] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 684.2605ms
+[2020-06-21 02:00:08] Request finished in 1183.3501ms 200 application/json; charset=utf-8
+[2020-06-21 02:00:29] Request starting HTTP/1.1 POST http://localhost:5000/api/user/password/update application/json 52
+[2020-06-21 02:00:29] Successfully validated the token.
+[2020-06-21 02:00:30] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-21 02:00:30] Authorization was successful for user: daw95.
+[2020-06-21 02:00:30] Executing action method Word.Web.Server.ApiController.UpdateUserPasswordAsync (Word.Web.Server) with arguments (Word.Core.UpdateUserPasswordApiModel) - ModelState is Valid
+[2020-06-21 02:00:30] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 02:00:30] Executed DbCommand (20ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-21 02:00:31] Executed DbCommand (48ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+[2020-06-21 02:00:31] Executed DbCommand (221ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+[2020-06-21 02:00:32] Executed DbCommand (228ms) [Parameters=[@p16='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?', @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?', @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?', @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [FirstName] = @p4, [LastName] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+SELECT @@ROWCOUNT;
+[2020-06-21 02:00:32] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-21 02:00:32] Executed action Word.Web.Server.ApiController.UpdateUserPasswordAsync (Word.Web.Server) in 2310.1792ms
+[2020-06-21 02:00:32] Request finished in 2564.3688ms 200 application/json; charset=utf-8
+[2020-06-21 02:00:48] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile/update application/json 66
+[2020-06-21 02:00:48] Successfully validated the token.
+[2020-06-21 02:00:48] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-21 02:00:49] Authorization was successful for user: daw95.
+[2020-06-21 02:00:49] Executing action method Word.Web.Server.ApiController.UpdateUserProfileAsync (Word.Web.Server) with arguments (Word.Core.UpdateUserProfileApiModel) - ModelState is Valid
+[2020-06-21 02:00:49] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 02:00:49] Executed DbCommand (6ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-21 02:00:49] Executed DbCommand (33ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0
+[2020-06-21 02:00:49] Executed DbCommand (49ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[FirstName], [u].[LastName], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0
+[2020-06-21 02:00:49] Executed DbCommand (37ms) [Parameters=[@p16='?' (Size = 450), @p0='?', @p1='?' (Size = 4000), @p17='?' (Size = 4000), @p2='?' (Size = 256), @p3='?', @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?', @p7='?', @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?', @p13='?' (Size = 4000), @p14='?', @p15='?' (Size = 256)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [FirstName] = @p4, [LastName] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+SELECT @@ROWCOUNT;
+[2020-06-21 02:00:49] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-21 02:00:49] Executed action Word.Web.Server.ApiController.UpdateUserProfileAsync (Word.Web.Server) in 1297.0714ms
+[2020-06-21 02:00:49] Request finished in 1426.7799ms 200 application/json; charset=utf-8
+[2020-06-21 02:01:03] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-21 02:01:04] Successfully validated the token.
+[2020-06-21 02:01:04] AuthenticationScheme: Bearer was successfully authenticated.
+[2020-06-21 02:01:04] Authorization was successful for user: daw95.
+[2020-06-21 02:01:04] Executing action method Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) with arguments ((null)) - ModelState is Valid
+[2020-06-21 02:01:04] Entity Framework Core 2.0.3-rtm-10026 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-21 02:01:04] Executed DbCommand (25ms) [Parameters=[@__get_Item_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[FirstName], [e].[LastName], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0
+[2020-06-21 02:01:04] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+[2020-06-21 02:01:04] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 813.6605ms
+[2020-06-21 02:01:05] Request finished in 982.3176ms 200 application/json; charset=utf-8

@@ -58,9 +58,9 @@ namespace Word.Web.Server
         }
 
         #endregion
-        
+
         #region Login / Register / Verify
-        
+
         /// <summary>
         /// Tries to register for a new account on the server
         /// </summary>
@@ -165,9 +165,9 @@ namespace Word.Web.Server
             var isEmail = loginCredentials.UsernameOrEmail.Contains("@");
 
             // Get the user details
-            var user = isEmail ?
+            var user = isEmail ? 
                 // Find by email
-                await mUserManager.FindByEmailAsync(loginCredentials.UsernameOrEmail) :
+                await mUserManager.FindByEmailAsync(loginCredentials.UsernameOrEmail) : 
                 // Find by username
                 await mUserManager.FindByNameAsync(loginCredentials.UsernameOrEmail);
 
@@ -206,7 +206,7 @@ namespace Word.Web.Server
                 }
             };
         }
-        
+
         [AllowAnonymous]
         [Route(ApiRoutes.VerifyEmail)]
         [HttpGet]
@@ -214,12 +214,6 @@ namespace Word.Web.Server
         {
             // Get the user
             var user = await mUserManager.FindByIdAsync(userId);
-
-            // NOTE: Issue at the minute with Url Decoding that contains /'s does not replace them
-            //       https://github.com/aspnet/Home/issues/2669
-            //       
-            //       For now, manually fix that
-            emailToken = emailToken.Replace("%2f", "/").Replace("%2F", "/");
 
             // If the user is null
             if (user == null)
@@ -239,7 +233,7 @@ namespace Word.Web.Server
             // TODO: Nice UI
             return Content("Invalid Email Verification Token :(");
         }
-        
+
         #endregion
 
         /// <summary>
@@ -374,28 +368,6 @@ namespace Word.Web.Server
             #endregion
         }
 
-        #region Private Helpers
-
-        /// <summary>
-        /// Sends the given user a new verify email link
-        /// </summary>
-        /// <param name="user">The user to send the link to</param>
-        /// <returns></returns>
-        private async Task SendUserEmailVerificationAsync(ApplicationUser user)
-        {
-            // Get the user details
-            var userIdentity = await mUserManager.FindByNameAsync(user.UserName);
-
-            // Generate an email verification code
-            var emailVerificationCode = await mUserManager.GenerateEmailConfirmationTokenAsync(user);
-
-            // TODO: Replace with APIRoutes that will contain the static routes to use
-            var confirmationUrl = $"http://{Request.Host.Value}/api/verify/email/{HttpUtility.UrlEncode(userIdentity.Id)}/{HttpUtility.UrlEncode(emailVerificationCode)}";
-
-            // Email the user the verification code
-            await EmailSender.SendUserVerificationEmailAsync(user.UserName, userIdentity.Email, confirmationUrl);
-        }
-        
         /// <summary>
         /// Attempts to update the users password
         /// </summary>
@@ -451,6 +423,28 @@ namespace Word.Web.Server
                 };
 
             #endregion
+        }
+
+        #region Private Helpers
+
+        /// <summary>
+        /// Sends the given user a new verify email link
+        /// </summary>
+        /// <param name="user">The user to send the link to</param>
+        /// <returns></returns>
+        private async Task SendUserEmailVerificationAsync(ApplicationUser user)
+        {
+            // Get the user details
+            var userIdentity = await mUserManager.FindByNameAsync(user.UserName);
+
+            // Generate an email verification code
+            var emailVerificationCode = await mUserManager.GenerateEmailConfirmationTokenAsync(user);
+
+            // TODO: Replace with APIRoutes that will contain the static routes to use
+            var confirmationUrl = $"http://{Request.Host.Value}/api/verify/email/?userId={HttpUtility.UrlEncode(userIdentity.Id)}&emailToken={HttpUtility.UrlEncode(emailVerificationCode)}";
+
+            // Email the user the verification code
+            await EmailSender.SendUserVerificationEmailAsync(user.UserName, userIdentity.Email, confirmationUrl);
         }
 
         #endregion
