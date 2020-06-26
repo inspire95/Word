@@ -767,3 +767,39 @@ WHERE [e].[Id] = @__get_Item_0
 [2020-06-22 01:55:14] Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 [2020-06-22 01:55:14] Executed action Word.Web.Server.ApiController.GetUserProfileAsync (Word.Web.Server) in 378.2651ms
 [2020-06-22 01:55:14] Request finished in 515.5308ms 200 application/json; charset=utf-8
+[2020-06-26 01:49:07] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2020-06-26 01:49:08] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:10] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:10] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:11] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:11] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:16] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:16] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:22] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:22] Failed to authenticate HTTPS connection.
+[2020-06-26 01:49:22] Request starting HTTP/1.1 GET https://localhost:5555/  
+[2020-06-26 01:49:22] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Word.Web.Server.HomeController (Word.Web.Server).
+[2020-06-26 01:49:23] Executing action method Word.Web.Server.HomeController.Index (Word.Web.Server) - Validation state: Valid
+[2020-06-26 01:49:23] Entity Framework Core 2.1.14-servicing-32113 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+[2020-06-26 01:49:23] Executed DbCommand (127ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0
+[2020-06-26 01:49:24] Executed DbCommand (90ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Settings] AS [s])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END
+[2020-06-26 01:49:24] Executed action method Word.Web.Server.HomeController.Index (Word.Web.Server), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1186.5805ms.
+[2020-06-26 01:49:24] Executing ViewResult, running view Index.
+[2020-06-26 01:49:24] Executed ViewResult - view Index executed in 166.4575ms.
+[2020-06-26 01:49:24] Executed action Word.Web.Server.HomeController.Index (Word.Web.Server) in 1677.2707ms
+[2020-06-26 01:49:24] Request finished in 2135.9835ms 200 text/html; charset=utf-8
+[2020-06-26 01:49:24] Request starting HTTP/1.1 GET https://localhost:5555/favicon.ico  
+[2020-06-26 01:49:24] Request finished in 119.69ms 404 
+[2020-06-26 01:49:32] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-26 01:49:32] Request finished in 12.0583ms 307 
+[2020-06-26 01:49:33] Connection id "0HM0PORNMTD8J" request processing ended abnormally.
+[2020-06-26 01:50:11] Request starting HTTP/1.1 POST http://localhost:5000/api/user/profile application/json 0
+[2020-06-26 01:50:11] Request finished in 41.0543ms 307 
+[2020-06-26 01:50:11] Failed to authenticate HTTPS connection.
